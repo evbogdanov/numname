@@ -7,16 +7,15 @@ namespace numname_wrap {
 void
 GetName(const Nan::FunctionCallbackInfo<v8::Value>& args)
 {
-
     if (args.Length() != 1 || !args[0]->IsNumber()) {
         Nan::ThrowTypeError("Gimme exactly one numeric argument");
         return;
     }
-    
+
     unsigned long long num = args[0]->NumberValue();
     numname::NumName nn (num);
     const char* name = nn.get_name().c_str();
-      
+
     args.GetReturnValue().Set(Nan::New(name).ToLocalChecked());
 }
 
